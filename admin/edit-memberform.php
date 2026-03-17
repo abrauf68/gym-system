@@ -76,6 +76,12 @@ while($row=mysqli_fetch_array($result)){
               </div>
             </div>
             <div class="control-group">
+              <label class="control-label">Father Name :</label>
+              <div class="controls">
+                <input type="text" class="span11" name="fathername" placeholder="Father name" value='<?php echo $row['fathername']; ?>' />
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label">Username :</label>
               <div class="controls">
                 <input type="text" class="span11" name="username" value='<?php echo $row['username']; ?>' />
@@ -103,6 +109,13 @@ while($row=mysqli_fetch_array($result)){
               <div class="controls">
                 <input type="date" name="dor" class="span11" value='<?php echo $row['dor']; ?>' />
                 <span class="help-block">Date of registration</span> </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">D.O.B :</label>
+              <div class="controls">
+                <input type="date" name="dob" class="span11" value='<?php echo $row['dob']; ?>'/>
+                <span class="help-block">Date of Birth</span>
+              </div>
             </div>
             
           
@@ -154,6 +167,13 @@ while($row=mysqli_fetch_array($result)){
         <div class="widget-content nopadding">
           <div class="form-horizontal">
             <div class="control-group">
+              <label for="normal" class="control-label">CNIC/ID Number</label>
+              <div class="controls">
+                <input type="text" name="cnic" placeholder="00000-0000000-0" class="span8 mask text" value='<?php echo $row['cnic']; ?>'>
+                <span class="help-block blue span8">00000-0000000-0</span>
+              </div>
+            </div>
+            <div class="control-group">
               <label for="normal" class="control-label">Contact Number</label>
               <div class="controls">
                 <input type="number" id="mask-phone" name="contact" value='<?php echo $row['contact']; ?>' class="span8 mask text">
@@ -161,9 +181,21 @@ while($row=mysqli_fetch_array($result)){
                 </div>
             </div>
             <div class="control-group">
+              <label for="normal" class="control-label">Email</label>
+              <div class="controls">
+                <input type="text" name="email" placeholder="example@gmail.com" class="span8 mask text" value='<?php echo $row['email']; ?>'>
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label">Address :</label>
               <div class="controls">
                 <input type="text" class="span11" name="address" value='<?php echo $row['address']; ?>' />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Medical Notes :</label>
+              <div class="controls">
+                <input type="text" class="span11" name="medical_notes" placeholder="Medical Condition or Note"  value='<?php echo $row['medical_notes']; ?>'/>
               </div>
             </div>
           </div>
@@ -178,15 +210,28 @@ while($row=mysqli_fetch_array($result)){
             <div class="control-group">
               <label class="control-label">Services</label>
               <div class="controls">
-                <label>
-                  <input type="radio" value="Fitness" name="services" />
-                  Fitness <small>- $55 per month</small></label>
-                <label>
-                  <input type="radio" value="Sauna" name="services" />
-                  Sauna <small>- $35 per month</small></label>
-                <label>
-                  <input type="radio" value="Cardio" name="services" />
-                  Cardio <small>- $40 per month</small></label>
+                  <select name="services" class="span11" id="serviceSelect" required>
+                    <option value="" selected disabled>Select Service</option>
+
+                    <?php
+                    include "dbcon.php";
+                    $qry = "SELECT * FROM rates";
+                    $result = mysqli_query($conn, $qry) or die(mysqli_error($conn));
+
+                    while($row2 = mysqli_fetch_array($result)) {
+                    ?>
+                        <option 
+                            value="<?php echo $row2['name']; ?>" 
+                            data-charge="<?php echo $row2['charge']; ?>"
+                            data-id="<?php echo $row2['id']; ?>"
+
+                            <?php $row['rate_id'] == $row2['id'] ? 'selected' : ''; ?>
+                        >
+                            
+                            <?php echo $row['name']; ?> - Rs <?php echo $row['charge']; ?>
+                        </option>
+                    <?php } ?>
+                </select>
               </div>
             </div>
 
@@ -195,7 +240,7 @@ while($row=mysqli_fetch_array($result)){
               <div class="controls">
                 <div class="input-append">
                   <span class="add-on">$</span> 
-                  <input type="number" value='<?php echo $row['amount']; ?>' name="amount" class="span11">
+                  <input type="number" id="amountInput" value='<?php echo $row['amount']; ?>' name="amount" class="span11">
                   </div>
               </div>
             </div>
@@ -207,6 +252,8 @@ while($row=mysqli_fetch_array($result)){
              <input type="hidden" name="id" value="<?php echo $row['user_id'];?>">
               <button type="submit" class="btn btn-success">Update Member Details</button>
             </div>
+
+            <input type="hidden" name="serviceId" id="serviceId" value="<?php echo $row['rate_id'];?>">
             </form>
 
           </div>
@@ -288,6 +335,16 @@ while($row=mysqli_fetch_array($result)){
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
+
+document.getElementById('serviceSelect').addEventListener('change', function() {
+        
+        let selectedOption = this.options[this.selectedIndex];
+        let charge = selectedOption.getAttribute('data-charge');
+        let serviceId = selectedOption.getAttribute('data-id');
+
+        document.getElementById('amountInput').value = charge;
+        document.getElementById('serviceId').value = serviceId;
+    });
 </script>
 </body>
 </html>

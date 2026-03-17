@@ -54,7 +54,7 @@ header('location:../index.php');
 
 if(isset($_POST['fullname'])){
   $fullname = $_POST["fullname"];    
-  $fathername = $_POST["fathername"];    
+  $fathername = $_POST["fathername"] ?? null;    
   $username = $_POST["username"];
   $password = $_POST["password"];
   $dor = $_POST["dor"];
