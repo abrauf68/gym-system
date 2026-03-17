@@ -102,11 +102,13 @@ header('location:../index.php');
                   <label class="control-label">Designation</label>
                   <div class="controls">
                   <select name="designation" id="designation">
-                    <option value="Cashier">Cashier</option>
                     <option value="Trainer">Trainer</option>
+                    <option value="Cleaner">Cleaner</option>
+                    <option value="Manager">Manager</option> 
+                    <option value="Staff">Staff</option> 
+                    <option value="Cashier">Cashier</option>
                     <option value="GYM Assistant">GYM Assistant</option>
                     <option value="Front Desk Staff">Front Desk Staff</option>
-                    <option value="Manager">Manager</option>
                     </select>
                   </div>
                 </div>
