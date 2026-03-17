@@ -241,7 +241,7 @@ if (!isset($_SESSION['user_id'])) {
                   <div class="form-actions text-center">
                     <button type="submit" class="btn btn-success">Submit Member Details</button>
                   </div>
-                  <input type="text" name="serviceId" id="serviceId" value="" hidden>
+                  <input type="hidden" name="serviceId" id="serviceId">
                   </form>
 
                 </div>
