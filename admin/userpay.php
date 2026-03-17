@@ -140,7 +140,7 @@ header('location:../index.php');
                                                                     
                                                                     <tr class="total">
                                                                         <td class="alignright" width="80%">Total Amount</td>
-                                                                        <td class="alignright">$<?php echo $amountpayable; ?></td>
+                                                                        <td class="alignright">Rs. <?php echo $amountpayable; ?></td>
                                                                     </tr>
                                                                 </tbody></table>
                                                             </td>
