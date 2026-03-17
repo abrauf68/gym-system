@@ -2,7 +2,7 @@
 
 **Database Name: gymnsb**
 
-**Developed by Naseeb Bajracharya**
+**Developed & Developed By Supersoft Technologies**
 
 **Recommended PHP Version 5.6, 7.4**
 
