@@ -59,6 +59,7 @@ header('location:../index.php');
             $paid_date = $_POST['paid_date'];
             // $p_year = date('Y');
             $services = $_POST["services"];
+            $rate_id = $_POST["rate_id"];
             $amount = $_POST["amount"];
             $plan = $_POST["plan"];
             $status = $_POST["status"];
@@ -68,7 +69,7 @@ header('location:../index.php');
             $amountpayable = $amount * $plan;
             
             include 'dbcon.php';
-            date_default_timezone_set('Asia/Kathmandu');
+            date_default_timezone_set('Asia/Karachi');
             //$current_date = date('Y-m-d h:i:s');
                 $current_date = date('Y-m-d h:i A');
                 $exp_date_time = explode(' ', $current_date);
@@ -83,7 +84,23 @@ header('location:../index.php');
 
                 <h3 class="text-center">Something went wrong!</h3>
                 
-             <?php } else { ?>
+             <?php } else { 
+                
+                $subtotal = $amountpayable;
+                $discount = 0;
+                $total = $amountpayable;
+
+                $payment_qry = "INSERT INTO payments 
+                                (rate_id, member_id, subtotal, discount, total, payment_date) 
+                                VALUES 
+                                ('$rate_id', '$id', '$subtotal', '$discount', '$total', '$curr_date')";
+
+                $payment_result = mysqli_query($conn, $payment_qry);
+
+                if(!$payment_result){
+                    echo "<h4>Payment insert failed!</h4>";
+                }    
+            ?>
 
               <?php if ($status == 'Active') {?> 
             
@@ -134,7 +151,7 @@ header('location:../index.php');
 
                                                                     <tr>
                                                                         <td><?php echo 'Charge Per Month'; ?></td>
-                                                                        <td class="alignright"><?php echo '$'.$amount?></td>
+                                                                        <td class="alignright"><?php echo 'Rs. '.$amount?></td>
                                                                     </tr>
                                                                    
                                                                     
