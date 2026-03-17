@@ -175,7 +175,7 @@ hr {
   z-index: -9;
 }
 #header h1 {
-  background: url("../img/logo1.png") no-repeat scroll 0 0 transparent;
+  background: url("../../img/logo1.png") no-repeat scroll 0 0 transparent;
   background-size: contain;
   height: 31px;
   left: 20px;

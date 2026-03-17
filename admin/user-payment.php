@@ -85,7 +85,7 @@ while($row = mysqli_fetch_array($result)){
                       <td><img src="../img/gym-logo.png" alt="Gym Logo" width="175"></td>
                     </tr>
                     <tr>
-                      <td><h4>Perfect GYM Club</h4></td>
+                      <td><h4>Muscles Architect</h4></td>
                     </tr>
                     <tr>
                       <td>5021  Wetzel Lane, Williamsburg</td>

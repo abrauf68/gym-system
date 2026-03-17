@@ -68,7 +68,7 @@ header('location:../index.php');
                 <table class="">
                   <tbody>
                     <tr>
-                      <td><h4>Perfect GYM Club</h4></td>
+                      <td><h4>Muscles Architect</h4></td>
                     </tr>
                     <tr>
                       <td>5021  Wetzel Lane, Williamsburg</td>
