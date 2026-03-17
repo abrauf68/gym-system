@@ -47,11 +47,20 @@ header('location:../index.php');
 
 <?php
 include 'dbcon.php';
-$id=$_GET['id'];
-$qry= "select * from members where user_id='$id'";
-$result=mysqli_query($conn,$qry);
-while($row=mysqli_fetch_array($result)){
-?> 
+
+$id = $_GET['id'];
+
+$qry = "
+    SELECT members.*, rates.charge, rates.name AS service_name
+    FROM members
+    LEFT JOIN rates ON members.services = rates.id
+    WHERE members.user_id = '$id'
+";
+
+$result = mysqli_query($conn, $qry) or die(mysqli_error($conn));
+
+while($row = mysqli_fetch_array($result)){
+?>
 
 <div id="content">
   <div id="content-header">
@@ -111,7 +120,7 @@ while($row=mysqli_fetch_array($result)){
                     </tr>
                     <tr>
                       <td>Amount Per Month:</td>
-                      <td><input id="amount" type="number" name="amount" value='<?php if($row['services'] == 'Fitness') { echo '55';} elseif ($row['services'] == 'Sauna') { echo '35';} else {echo '40';} ?>' /></td>
+                      <td><input id="amount" type="number" name="amount" value='<?php echo $row['charge']; ?>' /></td>
                     </tr>
 
                     <input type="hidden" name="paid_date" value="<?php echo $row['paid_date']; ?>">
