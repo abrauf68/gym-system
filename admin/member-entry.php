@@ -168,29 +168,25 @@ if (!isset($_SESSION['user_id'])) {
               <div class="widget-content nopadding">
                 <div class="form-horizontal">
 
-                  <?php
-                    include "dbcon.php";
-
-                    $qry = "SELECT * FROM rates";
-                    $result = mysqli_query($conn, $qry) or die(mysqli_error($conn));
-                  ?>
                   <div class="control-group">
                     <label class="control-label">Services</label>
                     <div class="controls">
+                        <select name="services" class="span11" required>
+                            <option value="" selected disabled>Select Service</option>
 
-                        <?php while($row = mysqli_fetch_array($result)) { ?>
-                            
-                            <label>
-                                <input type="radio" 
-                                      value="<?php echo $row['name']; ?>" 
-                                      name="services" />
+                            <?php
+                            include "dbcon.php";
+                            $qry = "SELECT * FROM rates";
+                            $result = mysqli_query($conn, $qry) or die(mysqli_error($conn));
 
-                                <?php echo $row['name']; ?> 
-                                <small>- Rs <?php echo $row['charge']; ?> per month</small>
-                            </label>
+                            while($row = mysqli_fetch_array($result)) {
+                            ?>
+                                <option value="<?php echo $row['id']; ?>">
+                                    <?php echo $row['name']; ?> - Rs <?php echo $row['charge']; ?>
+                                </option>
+                            <?php } ?>
 
-                        <?php } ?>
-
+                        </select>
                     </div>
                 </div>
 
