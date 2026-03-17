@@ -69,6 +69,12 @@ if (!isset($_SESSION['user_id'])) {
                   </div>
                 </div>
                 <div class="control-group">
+                  <label class="control-label">Father Name :</label>
+                  <div class="controls">
+                    <input type="text" class="span11" name="fathername" placeholder="Father name" />
+                  </div>
+                </div>
+                <div class="control-group">
                   <label class="control-label">Username :</label>
                   <div class="controls">
                     <input type="text" class="span11" name="username" placeholder="Username" />
@@ -96,6 +102,13 @@ if (!isset($_SESSION['user_id'])) {
                   <div class="controls">
                     <input type="date" name="dor" class="span11" />
                     <span class="help-block">Date of registration</span>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">D.O.B :</label>
+                  <div class="controls">
+                    <input type="date" name="dob" class="span11" />
+                    <span class="help-block">Date of Birth</span>
                   </div>
                 </div>
 
@@ -148,6 +161,13 @@ if (!isset($_SESSION['user_id'])) {
             <div class="widget-content nopadding">
               <div class="form-horizontal">
                 <div class="control-group">
+                  <label for="normal" class="control-label">CNIC/ID Number</label>
+                  <div class="controls">
+                    <input type="text" name="cnic" placeholder="00000-0000000-0" class="span8 mask text">
+                    <span class="help-block blue span8">00000-0000000-0</span>
+                  </div>
+                </div>
+                <div class="control-group">
                   <label for="normal" class="control-label">Contact Number</label>
                   <div class="controls">
                     <input type="number" id="mask-phone" name="contact" placeholder="9876543210" class="span8 mask text">
@@ -155,9 +175,21 @@ if (!isset($_SESSION['user_id'])) {
                   </div>
                 </div>
                 <div class="control-group">
+                  <label for="normal" class="control-label">Email</label>
+                  <div class="controls">
+                    <input type="text" name="email" placeholder="example@gmail.com" class="span8 mask text">
+                  </div>
+                </div>
+                <div class="control-group">
                   <label class="control-label">Address :</label>
                   <div class="controls">
                     <input type="text" class="span11" name="address" placeholder="Address" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Medical Notes :</label>
+                  <div class="controls">
+                    <input type="text" class="span11" name="medical_notes" placeholder="Medical Condition or Note" />
                   </div>
                 </div>
               </div>
@@ -171,22 +203,26 @@ if (!isset($_SESSION['user_id'])) {
                   <div class="control-group">
                     <label class="control-label">Services</label>
                     <div class="controls">
-                        <select name="services" class="span11" required>
-                            <option value="" selected disabled>Select Service</option>
+                        <select name="services" class="span11" id="serviceSelect" required>
+                          <option value="" selected disabled>Select Service</option>
 
-                            <?php
-                            include "dbcon.php";
-                            $qry = "SELECT * FROM rates";
-                            $result = mysqli_query($conn, $qry) or die(mysqli_error($conn));
+                          <?php
+                          include "dbcon.php";
+                          $qry = "SELECT * FROM rates";
+                          $result = mysqli_query($conn, $qry) or die(mysqli_error($conn));
 
-                            while($row = mysqli_fetch_array($result)) {
-                            ?>
-                                <option value="<?php echo $row['id']; ?>">
-                                    <?php echo $row['name']; ?> - Rs <?php echo $row['charge']; ?>
-                                </option>
-                            <?php } ?>
-
-                        </select>
+                          while($row = mysqli_fetch_array($result)) {
+                          ?>
+                              <option 
+                                  value="<?php echo $row['name']; ?>" 
+                                  data-charge="<?php echo $row['charge']; ?>"
+                                  data-id="<?php echo $row['id']; ?>"
+                              >
+                                  
+                                  <?php echo $row['name']; ?> - Rs <?php echo $row['charge']; ?>
+                              </option>
+                          <?php } ?>
+                      </select>
                     </div>
                 </div>
 
@@ -195,7 +231,7 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="controls">
                       <div class="input-append">
                         <span class="add-on">$</span>
-                        <input type="number" placeholder="50" name="amount" class="span11">
+                        <input type="number" name="amount" id="amountInput" class="span11">
                       </div>
                     </div>
                   </div>
@@ -205,6 +241,7 @@ if (!isset($_SESSION['user_id'])) {
                   <div class="form-actions text-center">
                     <button type="submit" class="btn btn-success">Submit Member Details</button>
                   </div>
+                  <input type="text" name="serviceId" id="serviceId" value="" hidden>
                   </form>
 
                 </div>
@@ -285,6 +322,16 @@ if (!isset($_SESSION['user_id'])) {
     function resetMenu() {
       document.gomenu.selector.selectedIndex = 2;
     }
+
+    document.getElementById('serviceSelect').addEventListener('change', function() {
+        
+        let selectedOption = this.options[this.selectedIndex];
+        let charge = selectedOption.getAttribute('data-charge');
+        let serviceId = selectedOption.getAttribute('data-id');
+
+        document.getElementById('amountInput').value = charge;
+        document.getElementById('serviceId').value = serviceId;
+    });
   </script>
 </body>
 
