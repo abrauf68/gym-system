@@ -1,9 +1,9 @@
 <?php
 
 $servername="localhost";
-$uname="root";
-$pass="";
-$db="gymnsb";
+$uname="supersof_gym";
+$pass="supersof_gym";
+$db="supersof_gym";
 
 $conn=mysqli_connect($servername,$uname,$pass,$db);
 
