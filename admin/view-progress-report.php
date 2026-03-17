@@ -76,10 +76,10 @@ header('location:../index.php');
                     </tr>
                     
                     <tr>
-                      <td>Tel: 231-267-6011</td>
+                      <td>Tel: 03412389900</td>
                     </tr>
                     <tr>
-                      <td >Email: support@perfectgym.com</td>
+                      <td >Email: ahmedakhyar900@gmail.com</td>
                     </tr>
                   </tbody>
                 </table>
