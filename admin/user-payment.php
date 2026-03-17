@@ -53,7 +53,7 @@ $id = $_GET['id'];
 $qry = "
     SELECT members.*, rates.charge, rates.name AS service_name
     FROM members
-    LEFT JOIN rates ON members.services = rates.id
+    LEFT JOIN rates ON members.rate_id = rates.id
     WHERE members.user_id = '$id'
 ";
 
