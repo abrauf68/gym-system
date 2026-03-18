@@ -36,7 +36,7 @@ include('dbcon.php'); ?>
                     </div>
                 </div>
                 <div class="form-actions">
-                    <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Join Now!</a></span>
+                    <!-- <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Join Now!</a></span> -->
                     <span class="pull-right"><button type="submit" name="login" class="btn btn-success" />Customer Login</button></span>
                 </div>
                 <div class="g">
