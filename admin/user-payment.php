@@ -139,12 +139,8 @@ if (!isset($_SESSION['user_id'])) {
                                 <option value="6">Six Month</option>
                                 <option value="12">One Year</option>
                                 <option value="0">None-Expired</option>
-
                               </select>
                             </div>
-
-
-
                           </td>
 
                           <tr>
