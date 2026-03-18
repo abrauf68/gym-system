@@ -25,7 +25,7 @@ header('location:../index.php');
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.php">Perfect Gym</a></h1>
+  <h1><a href="dashboard.php">Muscles Architect</a></h1>
 </div>
 <!--close-Header-part--> 
 

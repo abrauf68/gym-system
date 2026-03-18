@@ -25,7 +25,7 @@ header('location:../index.php');
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Perfect Gym</a></h1>
+  <h1><a href="dashboard.html">Muscles Architect</a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -47,7 +47,7 @@ header('location:../index.php');
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Equipment List</a> </div>
-    <h1 class="text-center">Perfect Gym's Equipment List <i class="icon icon-cogs"></i></h1>
+    <h1 class="text-center">Muscles Architect's Equipment List <i class="icon icon-cogs"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>

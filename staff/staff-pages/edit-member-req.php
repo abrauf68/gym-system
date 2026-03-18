@@ -25,7 +25,7 @@ header('location:../index.php');
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Perfect Gym</a></h1>
+  <h1><a href="dashboard.html">Muscles Architect</a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -55,21 +55,29 @@ header('location:../index.php');
     <?php 
 
             if(isset($_POST['fullname'])){
-            $fullname = $_POST["fullname"];    
+            $fullname = $_POST["fullname"]; 
+            $fathername = $_POST["fathername"] ?? null;    
             $username = $_POST["username"];
             $dor = $_POST["dor"];
-            $gender = $_POST["gender"];
+            $dob = $_POST["dob"] ?? null;
+            $cnic = $_POST["cnic"] ?? null;
+            $email = $_POST["email"] ?? null;
+            $gender = $_POST["gender"] ?? null;
             $services = $_POST["services"];
+            $serviceId = $_POST["serviceId"];
             $amount = $_POST["amount"];
             $plan = $_POST["plan"];
             $address = $_POST["address"];
+            $medical_notes = $_POST["medical_notes"];
             $contact = $_POST["contact"];
             $id = $_POST["id"];
+
+            $totalamount = $amount * $plan;
             
             include 'dbcon.php';
             //code after connection is successfull
             //update query
-            $qry = "update members set fullname='$fullname', username='$username',dor='$dor', gender='$gender', services='$services', amount='$amount', plan='$plan', address='$address', contact='$contact' where user_id='$id'";
+            $qry = "update members set fullname='$fullname', fathername='$fathername', username='$username',dor='$dor',dob='$dob',cnic='$cnic',email='$email', gender='$gender', services='$services', serviceId='$serviceId', amount='$totalamount', plan='$plan', address='$address', medical_notes='$medical_notes', contact='$contact' where user_id='$id'";
             $result = mysqli_query($conn,$qry); //query executes
 
             if(!$result){

@@ -25,7 +25,7 @@ header('location:../index.php');
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Perfect Gym</a></h1>
+  <h1><a href="dashboard.html">Muscles Architect</a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -56,19 +56,32 @@ header('location:../index.php');
 
 if(isset($_POST['fullname'])){
 $fullname = $_POST["fullname"];    
+$fathername = $_POST["fathername"] ?? null;    
 $username = $_POST["username"];
 $password = $_POST["password"];
 $dor = $_POST["dor"];
-$gender = $_POST["gender"];
+$dob = $_POST["dob"] ?? null;
+$cnic = $_POST["cnic"] ?? null;
+$email = $_POST["email"] ?? null;
+$gender = $_POST["gender"] ?? null;
 $services = $_POST["services"];
+$serviceId = $_POST["serviceId"];
+// $paid_date='$curr_date';
 $amount = $_POST["amount"];
+$p_year = date('Y');
+$paid_date = date("Y-m-d");
 $plan = $_POST["plan"];
 $address = $_POST["address"];
+$medical_notes = $_POST["medical_notes"];
 $contact = $_POST["contact"];
+
+$password = md5($password);
+
+$totalamount = $amount * $plan;
 
 include 'dbcon.php';
 //code after connection is successfull
-$qry = "insert into members(fullname,username,password,dor,gender,services,amount,plan,address,contact) values ('$fullname','$username','$password','$dor','$gender','$services','$amount','$plan','$address','$contact')";
+$qry = "INSERT INTO members(fullname,fathername,username,password,dor,dob,cnic,email,gender,rate_id,services,amount,p_year,paid_date,plan,address,contact,medical_notes) values ('$fullname','$fathername','$username','$password','$dor','$dob','$cnic','$email','$gender','$serviceId','$services','$totalamount','$p_year','$paid_date','$plan','$address','$contact','$medical_notes')";
 $result = mysqli_query($conn,$qry); //query executes
 
 if(!$result){

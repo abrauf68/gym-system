@@ -28,7 +28,7 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Header-part-->
   <div id="header">
-    <h1><a href="">Perfect Gym Admin</a></h1>
+    <h1><a href="">Muscles Architect Admin</a></h1>
   </div>
   <!--close-Header-part-->
 

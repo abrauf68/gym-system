@@ -42,7 +42,7 @@ $result=mysqli_query($con,$qry);
                           ?>  
                      ]);  
                 var options = {  
-                      title: 'Percentage of Services taken by Perfect GYM Members',  
+                      title: 'Percentage of Services taken by Muscles Architect Members',  
                       //is3D:true,  
                       pieHole: 0.0 
                      };  
@@ -55,7 +55,7 @@ $result=mysqli_query($con,$qry);
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
+  <h1><a href="dashboard.html">Muscles Architect Admin</a></h1>
 </div>
 <!--close-Header-part--> 
 
