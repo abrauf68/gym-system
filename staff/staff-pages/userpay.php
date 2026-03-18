@@ -56,7 +56,9 @@ header('location:../index.php');
 
             $fullname = $_POST['fullname'];
             $paid_date = $_POST['paid_date'];
+            // $p_year = date('Y');
             $services = $_POST["services"];
+            $rate_id = $_POST["rate_id"];
             $amount = $_POST["amount"];
             $plan = $_POST["plan"];
             $status = $_POST["status"];
@@ -73,14 +75,30 @@ header('location:../index.php');
                 $curr_time =  $exp_date_time['1']. ' ' .$exp_date_time['2'];
             //code after connection is successfull
             //update query
-            $qry = "UPDATE members SET amount='$amountpayable', plan='$plan', status='$status', paid_date='$curr_date', reminder = '0' WHERE user_id='$id'";
+            $qry = "UPDATE members SET amount='$amountpayable', plan='$plan', status='$status', paid_date='$curr_date', reminder='0' WHERE user_id='$id'";
             $result = mysqli_query($conn,$qry); //query executes
 
             if(!$result){ ?>
 
                 <h3 class="text-center">Something went wrong!</h3>
                 
-             <?php } else { ?>
+             <?php } else { 
+                
+                $subtotal = $amountpayable;
+                $discount = 0;
+                $total = $amountpayable;
+
+                $payment_qry = "INSERT INTO payments 
+                                (rate_id, member_id, subtotal, discount, total, payment_date) 
+                                VALUES 
+                                ('$rate_id', '$id', '$subtotal', '$discount', '$total', '$curr_date')";
+
+                $payment_result = mysqli_query($conn, $payment_qry);
+
+                if(!$payment_result){
+                    echo "<h4>Payment insert failed!</h4>";
+                }    
+            ?>
 
               <?php if ($status == 'Active') {?> 
             
@@ -131,13 +149,13 @@ header('location:../index.php');
 
                                                                     <tr>
                                                                         <td><?php echo 'Charge Per Month'; ?></td>
-                                                                        <td class="alignright"><?php echo '$'.$amount?></td>
+                                                                        <td class="alignright"><?php echo 'Rs. '.$amount?></td>
                                                                     </tr>
                                                                    
                                                                     
                                                                     <tr class="total">
                                                                         <td class="alignright" width="80%">Total Amount</td>
-                                                                        <td class="alignright">$<?php echo $amountpayable; ?></td>
+                                                                        <td class="alignright">Rs. <?php echo $amountpayable; ?></td>
                                                                     </tr>
                                                                 </tbody></table>
                                                             </td>
