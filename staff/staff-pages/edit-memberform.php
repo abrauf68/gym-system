@@ -234,7 +234,7 @@ while($row=mysqli_fetch_array($result)){
               <label class="control-label">Total Amount</label>
               <div class="controls">
                 <div class="input-append">
-                  <span class="add-on">$</span> 
+                  <span class="add-on">Rs. </span> 
                   <input type="number" id="amountInput" value='<?php echo $row['amount']; ?>' name="amount" class="span11">
                   </div>
               </div>

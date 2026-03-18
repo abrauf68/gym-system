@@ -218,7 +218,7 @@ header('location:../index.php');
               <label class="control-label">Total Amount</label>
               <div class="controls">
                 <div class="input-append">
-                  <span class="add-on">$</span> 
+                  <span class="add-on">Rs. </span> 
                   <input type="number" name="amount" id="amountInput" class="span11">
                   </div>
               </div>
